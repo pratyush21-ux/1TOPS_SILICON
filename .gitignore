@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Simulation artifacts
+sim/work/
+sim/build/
+*.vvp
+*.vcd
+*.wlf
+transcript
+
+# Build artifacts
+a.out
+*.o
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
