@@ -28,7 +28,7 @@ module rv32i_ex_block
         .adder_result_o(alu_adder_result_ex_o),
         .result_o(alu_result),
         .comparison_result_o(alu_cmp_result),
-        .is_equal_result_o()                 // not needed here; branches use comparison_result_o
+        .is_equal_result_o()                
     );
     always @(*) begin
          if (lsu_en_i)
