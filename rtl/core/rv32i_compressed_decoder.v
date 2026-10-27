@@ -190,6 +190,9 @@ module rv32i_compressed_decoder
                                 // c.jr → jalr x0, rs1, 0
                                 instr_o = {12'b0, instr_i[11:7],
                                            3'b000, 5'b0, `OPCODE_JALR};
+                                // c.jr with rs1 = x0 is a reserved encoding
+                                if (instr_i[11:7] == 5'b0)
+                                    illegal_instr_o = 1'b1;
                             end 
                             else 
                             begin

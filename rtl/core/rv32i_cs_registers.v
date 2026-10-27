@@ -212,7 +212,8 @@ module rv32i_cs_registers
             begin
                 is_pccr    = 1'b1;
                 pccr_index = csr_addr_i[4:0];
-                perf_rdata = PCCR_q[csr_addr_i[4:0]];
+                // counters above N_PERF_REGS do not exist, read them as 0 instead of X
+                perf_rdata = (csr_addr_i[4:0] < N_PERF_REGS) ? PCCR_q[csr_addr_i[4:0]] : 32'b0;
             end
         end
     end
@@ -232,7 +233,7 @@ module rv32i_cs_registers
                     `CSR_OP_NONE:  ;
                     `CSR_OP_WRITE: PCCR_n[pi] = csr_wdata_i;
                     `CSR_OP_SET:   PCCR_n[pi] = csr_wdata_i | PCCR_q[pi];
-                    `CSR_OP_CLEAR: PCCR_n[pi] = csr_wdata_i & ~(PCCR_q[pi]);
+                    `CSR_OP_CLEAR: PCCR_n[pi] = PCCR_q[pi] & ~csr_wdata_i;
                 endcase
             end
         end
@@ -248,7 +249,7 @@ module rv32i_cs_registers
                 `CSR_OP_NONE:  ;
                 `CSR_OP_WRITE: PCMR_n = csr_wdata_i[1:0];
                 `CSR_OP_SET:   PCMR_n = csr_wdata_i[1:0] | PCMR_q;
-                `CSR_OP_CLEAR: PCMR_n = csr_wdata_i[1:0] & ~(PCMR_q);
+                `CSR_OP_CLEAR: PCMR_n = PCMR_q & ~csr_wdata_i[1:0];
             endcase
         end
         if (is_pcer) 
@@ -257,7 +258,7 @@ module rv32i_cs_registers
                 `CSR_OP_NONE:  ;
                 `CSR_OP_WRITE: PCER_n = csr_wdata_i[N_PERF_COUNTERS-1:0];
                 `CSR_OP_SET:   PCER_n = csr_wdata_i[N_PERF_COUNTERS-1:0] | PCER_q;
-                `CSR_OP_CLEAR: PCER_n = csr_wdata_i[N_PERF_COUNTERS-1:0] & ~(PCER_q);
+                `CSR_OP_CLEAR: PCER_n = PCER_q & ~csr_wdata_i[N_PERF_COUNTERS-1:0];
             endcase
         end
     end
