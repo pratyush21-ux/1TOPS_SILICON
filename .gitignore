@@ -29,4 +29,3 @@ Thumbs.db
 # Synthesis outputs (regenerate with synth/run_synth.sh)
 synth/netlist/
 synth/*.lib
-synth/sta/work/
