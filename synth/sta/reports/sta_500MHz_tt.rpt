@@ -1,0 +1,259 @@
+period 2.000 ns (500 MHz)  clk_slew 0.1 ns  in_delay 0.0 ns  wire_cap/sink 0.0 pF
+cells 8028  clock-network cells 36  launch arcs 1499  comb loops (cells not ordered) 0
+WNS -8.521 ns   TNS -2296.443 ns   failing endpoints 501 / 1565
+max frequency (reg-to-reg, this model) ~ 95 MHz  (min period 10.521 ns)
+
+--- path 1: slack -8.521 ns  arrival 10.425  required 1.904  endpoint rv32i_if_stage.prefetch_i.fifo_i.addr_Q[0][29] .D (ff)
+    start id_stage_i.decoder_i.instr_rdata_i[3] (dfrtp_1 CLK->Q)   logic depth 46 cells
+      0.690  f  slew 0.075  dfrtp_1        CLK->Q       id_stage_i.decoder_i.instr_rdata_i[3]
+      1.077  r  slew 0.361  nor4b_4        B->Y         net463
+      1.271  f  slew 0.149  nand3_1        C->Y         net484
+      1.599  f  slew 0.068  or2_2          B->X         net3225
+      1.894  r  slew 0.326  o211ai_1       A2->Y        net3215
+      2.089  f  slew 0.153  nand4_1        C->Y         net8029
+      2.387  r  slew 0.242  nor3_4         A->Y         net3973
+      2.539  f  slew 0.115  a31oi_4        A3->Y        net482
+      2.776  r  slew 0.229  xnor2_1        B->Y         net2089
+      3.054  r  slew 0.079  maj3_2         C->X         net2090
+      3.142  f  slew 0.069  a211oi_2       A2->Y        net2093
+      3.284  r  slew 0.130  o21ai_2        A2->Y        net2095
+      3.372  f  slew 0.056  a21oi_2        A2->Y        net2098
+      3.502  r  slew 0.121  o21ai_2        A2->Y        net2101
+      3.588  f  slew 0.055  a21oi_2        A2->Y        net2104
+      3.724  r  slew 0.130  o21ai_2        A2->Y        net2106
+      3.803  f  slew 0.048  a21oi_2        A2->Y        net2109
+      3.995  f  slew 0.061  o21a_1         A2->X        net2112
+      4.214  f  slew 0.053  o21a_4         A2->X        net2114
+      4.440  r  slew 0.228  o311ai_4       A3->Y        net2118
+      4.562  f  slew 0.086  nand3_2        C->Y         net2119
+      4.863  r  slew 0.231  a311oi_2       A3->Y        net2126
+      4.996  f  slew 0.088  o311ai_2       A3->Y        net2130
+      5.338  r  slew 0.284  a311oi_2       A3->Y        net2135
+      5.479  f  slew 0.093  o311ai_2       A3->Y        net2138
+      5.824  r  slew 0.286  a311oi_2       A3->Y        net3042
+      5.952  f  slew 0.079  o311ai_2       A3->Y        net3047
+      6.345  f  slew 0.084  a311o_1        A3->X        net3051
+      6.642  r  slew 0.247  a311oi_1       A3->Y        net3054
+      6.760  f  slew 0.077  o21ai_1        A2->Y        net3143
+      7.035  r  slew 0.238  a211oi_1       A2->Y        net3313
+      7.307  r  slew 0.200  mux2i_1        S->Y         net3314
+      7.443  f  slew 0.095  a311oi_1       A3->Y        id_stage_i.branch_set_n
+      7.957  f  slew 0.112  or4_1          C->X         net3347
+      8.203  r  slew 0.198  a211oi_2       B1->Y        net3363
+      8.382  f  slew 0.151  nand4_1        C->Y         net6178
+      8.558  r  slew 0.196  nor4_2         D->Y         net6195
+      8.769  f  slew 0.188  nand4_1        D->Y         net6209
+      9.008  r  slew 0.264  nor4_4         D->Y         net6222
+      9.170  f  slew 0.123  nand4_4        D->Y         net6232
+      9.403  r  slew 0.290  nor4_4         D->Y         net6244
+      9.698  r  slew 0.083  and4_4         D->X         net6256
+      9.817  f  slew 0.092  nand4_4        D->Y         net6275
+     10.043  f  slew 0.127  nand4b_4       A_N->Y       net6288
+     10.210  r  slew 0.174  nor3_2         C->Y         net6293
+     10.364  r  slew 0.105  xor2_1         B->X         net6297
+     10.425  f  slew 0.032  o21ai_1        A2->Y        net6299
+
+--- path 2: slack -8.481 ns  arrival 10.401  required 1.921  endpoint rv32i_if_stage.prefetch_i.fifo_i.addr_Q[0][28] .D (ff)
+    start id_stage_i.decoder_i.instr_rdata_i[3] (dfrtp_1 CLK->Q)   logic depth 45 cells
+      0.690  f  slew 0.075  dfrtp_1        CLK->Q       id_stage_i.decoder_i.instr_rdata_i[3]
+      1.077  r  slew 0.361  nor4b_4        B->Y         net463
+      1.271  f  slew 0.149  nand3_1        C->Y         net484
+      1.599  f  slew 0.068  or2_2          B->X         net3225
+      1.894  r  slew 0.326  o211ai_1       A2->Y        net3215
+      2.089  f  slew 0.153  nand4_1        C->Y         net8029
+      2.387  r  slew 0.242  nor3_4         A->Y         net3973
+      2.539  f  slew 0.115  a31oi_4        A3->Y        net482
+      2.776  r  slew 0.229  xnor2_1        B->Y         net2089
+      3.054  r  slew 0.079  maj3_2         C->X         net2090
+      3.142  f  slew 0.069  a211oi_2       A2->Y        net2093
+      3.284  r  slew 0.130  o21ai_2        A2->Y        net2095
+      3.372  f  slew 0.056  a21oi_2        A2->Y        net2098
+      3.502  r  slew 0.121  o21ai_2        A2->Y        net2101
+      3.588  f  slew 0.055  a21oi_2        A2->Y        net2104
+      3.724  r  slew 0.130  o21ai_2        A2->Y        net2106
+      3.803  f  slew 0.048  a21oi_2        A2->Y        net2109
+      3.995  f  slew 0.061  o21a_1         A2->X        net2112
+      4.214  f  slew 0.053  o21a_4         A2->X        net2114
+      4.440  r  slew 0.228  o311ai_4       A3->Y        net2118
+      4.562  f  slew 0.086  nand3_2        C->Y         net2119
+      4.863  r  slew 0.231  a311oi_2       A3->Y        net2126
+      4.996  f  slew 0.088  o311ai_2       A3->Y        net2130
+      5.338  r  slew 0.284  a311oi_2       A3->Y        net2135
+      5.479  f  slew 0.093  o311ai_2       A3->Y        net2138
+      5.824  r  slew 0.286  a311oi_2       A3->Y        net3042
+      5.952  f  slew 0.079  o311ai_2       A3->Y        net3047
+      6.345  f  slew 0.084  a311o_1        A3->X        net3051
+      6.642  r  slew 0.247  a311oi_1       A3->Y        net3054
+      6.760  f  slew 0.077  o21ai_1        A2->Y        net3143
+      7.035  r  slew 0.238  a211oi_1       A2->Y        net3313
+      7.307  r  slew 0.200  mux2i_1        S->Y         net3314
+      7.443  f  slew 0.095  a311oi_1       A3->Y        id_stage_i.branch_set_n
+      7.957  f  slew 0.112  or4_1          C->X         net3347
+      8.203  r  slew 0.198  a211oi_2       B1->Y        net3363
+      8.382  f  slew 0.151  nand4_1        C->Y         net6178
+      8.558  r  slew 0.196  nor4_2         D->Y         net6195
+      8.769  f  slew 0.188  nand4_1        D->Y         net6209
+      9.008  r  slew 0.264  nor4_4         D->Y         net6222
+      9.170  f  slew 0.123  nand4_4        D->Y         net6232
+      9.403  r  slew 0.290  nor4_4         D->Y         net6244
+      9.698  r  slew 0.083  and4_4         D->X         net6256
+      9.817  f  slew 0.092  nand4_4        D->Y         net6275
+     10.043  f  slew 0.127  nand4b_4       A_N->Y       net6288
+     10.236  f  slew 0.034  o21a_1         A2->X        net6294
+     10.401  r  slew 0.168  o31ai_1        A3->Y        net6296
+
+--- path 3: slack -8.478 ns  arrival 10.384  required 1.907  endpoint rv32i_if_stage.prefetch_i.fifo_i.addr_Q[0][30] .D (ff)
+    start id_stage_i.decoder_i.instr_rdata_i[3] (dfrtp_1 CLK->Q)   logic depth 46 cells
+      0.690  f  slew 0.075  dfrtp_1        CLK->Q       id_stage_i.decoder_i.instr_rdata_i[3]
+      1.077  r  slew 0.361  nor4b_4        B->Y         net463
+      1.271  f  slew 0.149  nand3_1        C->Y         net484
+      1.599  f  slew 0.068  or2_2          B->X         net3225
+      1.894  r  slew 0.326  o211ai_1       A2->Y        net3215
+      2.089  f  slew 0.153  nand4_1        C->Y         net8029
+      2.387  r  slew 0.242  nor3_4         A->Y         net3973
+      2.539  f  slew 0.115  a31oi_4        A3->Y        net482
+      2.776  r  slew 0.229  xnor2_1        B->Y         net2089
+      3.054  r  slew 0.079  maj3_2         C->X         net2090
+      3.142  f  slew 0.069  a211oi_2       A2->Y        net2093
+      3.284  r  slew 0.130  o21ai_2        A2->Y        net2095
+      3.372  f  slew 0.056  a21oi_2        A2->Y        net2098
+      3.502  r  slew 0.121  o21ai_2        A2->Y        net2101
+      3.588  f  slew 0.055  a21oi_2        A2->Y        net2104
+      3.724  r  slew 0.130  o21ai_2        A2->Y        net2106
+      3.803  f  slew 0.048  a21oi_2        A2->Y        net2109
+      3.995  f  slew 0.061  o21a_1         A2->X        net2112
+      4.214  f  slew 0.053  o21a_4         A2->X        net2114
+      4.440  r  slew 0.228  o311ai_4       A3->Y        net2118
+      4.562  f  slew 0.086  nand3_2        C->Y         net2119
+      4.863  r  slew 0.231  a311oi_2       A3->Y        net2126
+      4.996  f  slew 0.088  o311ai_2       A3->Y        net2130
+      5.338  r  slew 0.284  a311oi_2       A3->Y        net2135
+      5.479  f  slew 0.093  o311ai_2       A3->Y        net2138
+      5.824  r  slew 0.286  a311oi_2       A3->Y        net3042
+      5.952  f  slew 0.079  o311ai_2       A3->Y        net3047
+      6.345  f  slew 0.084  a311o_1        A3->X        net3051
+      6.642  r  slew 0.247  a311oi_1       A3->Y        net3054
+      6.760  f  slew 0.077  o21ai_1        A2->Y        net3143
+      7.035  r  slew 0.238  a211oi_1       A2->Y        net3313
+      7.307  r  slew 0.200  mux2i_1        S->Y         net3314
+      7.443  f  slew 0.095  a311oi_1       A3->Y        id_stage_i.branch_set_n
+      7.957  f  slew 0.112  or4_1          C->X         net3347
+      8.203  r  slew 0.198  a211oi_2       B1->Y        net3363
+      8.382  f  slew 0.151  nand4_1        C->Y         net6178
+      8.558  r  slew 0.196  nor4_2         D->Y         net6195
+      8.769  f  slew 0.188  nand4_1        D->Y         net6209
+      9.008  r  slew 0.264  nor4_4         D->Y         net6222
+      9.170  f  slew 0.123  nand4_4        D->Y         net6232
+      9.403  r  slew 0.290  nor4_4         D->Y         net6244
+      9.698  r  slew 0.083  and4_4         D->X         net6256
+      9.817  f  slew 0.092  nand4_4        D->Y         net6275
+     10.043  f  slew 0.127  nand4b_4       A_N->Y       net6288
+     10.201  r  slew 0.180  nor4_4         D->Y         net6300
+     10.335  r  slew 0.049  xnor2_1        B->Y         net6302
+     10.384  f  slew 0.026  o21ai_1        A2->Y        net6304
+
+--- path 4: slack -8.400 ns  arrival 10.297  required 1.897  endpoint rv32i_if_stage.prefetch_i.fifo_i.addr_Q[0][31] .D (ff)
+    start id_stage_i.decoder_i.instr_rdata_i[3] (dfrtp_1 CLK->Q)   logic depth 46 cells
+      0.690  f  slew 0.075  dfrtp_1        CLK->Q       id_stage_i.decoder_i.instr_rdata_i[3]
+      1.077  r  slew 0.361  nor4b_4        B->Y         net463
+      1.271  f  slew 0.149  nand3_1        C->Y         net484
+      1.599  f  slew 0.068  or2_2          B->X         net3225
+      1.894  r  slew 0.326  o211ai_1       A2->Y        net3215
+      2.089  f  slew 0.153  nand4_1        C->Y         net8029
+      2.387  r  slew 0.242  nor3_4         A->Y         net3973
+      2.539  f  slew 0.115  a31oi_4        A3->Y        net482
+      2.776  r  slew 0.229  xnor2_1        B->Y         net2089
+      3.054  r  slew 0.079  maj3_2         C->X         net2090
+      3.142  f  slew 0.069  a211oi_2       A2->Y        net2093
+      3.284  r  slew 0.130  o21ai_2        A2->Y        net2095
+      3.372  f  slew 0.056  a21oi_2        A2->Y        net2098
+      3.502  r  slew 0.121  o21ai_2        A2->Y        net2101
+      3.588  f  slew 0.055  a21oi_2        A2->Y        net2104
+      3.724  r  slew 0.130  o21ai_2        A2->Y        net2106
+      3.803  f  slew 0.048  a21oi_2        A2->Y        net2109
+      3.995  f  slew 0.061  o21a_1         A2->X        net2112
+      4.214  f  slew 0.053  o21a_4         A2->X        net2114
+      4.440  r  slew 0.228  o311ai_4       A3->Y        net2118
+      4.562  f  slew 0.086  nand3_2        C->Y         net2119
+      4.863  r  slew 0.231  a311oi_2       A3->Y        net2126
+      4.996  f  slew 0.088  o311ai_2       A3->Y        net2130
+      5.338  r  slew 0.284  a311oi_2       A3->Y        net2135
+      5.479  f  slew 0.093  o311ai_2       A3->Y        net2138
+      5.824  r  slew 0.286  a311oi_2       A3->Y        net3042
+      5.952  f  slew 0.079  o311ai_2       A3->Y        net3047
+      6.345  f  slew 0.084  a311o_1        A3->X        net3051
+      6.642  r  slew 0.247  a311oi_1       A3->Y        net3054
+      6.760  f  slew 0.077  o21ai_1        A2->Y        net3143
+      7.035  r  slew 0.238  a211oi_1       A2->Y        net3313
+      7.307  r  slew 0.200  mux2i_1        S->Y         net3314
+      7.443  f  slew 0.095  a311oi_1       A3->Y        id_stage_i.branch_set_n
+      7.662  f  slew 0.112  nand2b_1       A_N->Y       id_stage_i.controller_i.instr_multicyle_i
+      7.970  r  slew 0.224  nor4b_2        A->Y         net3630
+      8.132  f  slew 0.126  nand4_1        C->Y         net3774
+      8.436  r  slew 0.373  nor4_1         D->Y         net3775
+      8.595  f  slew 0.109  nand4_1        D->Y         net3777
+      8.939  r  slew 0.434  nor4_1         D->Y         net3778
+      9.104  f  slew 0.115  nand4_1        D->Y         net3779
+      9.273  r  slew 0.194  nor4_1         D->Y         net3780
+      9.405  f  slew 0.091  nand4_1        D->Y         net3781
+      9.724  r  slew 0.274  nor4b_2        B->Y         net3791
+      9.848  f  slew 0.075  nand4_1        D->Y         net3792
+     10.071  r  slew 0.288  nor4_1         D->Y         net3793
+     10.229  r  slew 0.038  a21o_1         A2->X        net3795
+     10.297  f  slew 0.048  a31oi_1        A3->Y        net3797
+
+--- path 5: slack -8.356 ns  arrival 10.259  required 1.903  endpoint rv32i_if_stage.prefetch_i.fifo_i.addr_Q[0][27] .D (ff)
+    start id_stage_i.decoder_i.instr_rdata_i[3] (dfrtp_1 CLK->Q)   logic depth 45 cells
+      0.690  f  slew 0.075  dfrtp_1        CLK->Q       id_stage_i.decoder_i.instr_rdata_i[3]
+      1.077  r  slew 0.361  nor4b_4        B->Y         net463
+      1.271  f  slew 0.149  nand3_1        C->Y         net484
+      1.599  f  slew 0.068  or2_2          B->X         net3225
+      1.894  r  slew 0.326  o211ai_1       A2->Y        net3215
+      2.089  f  slew 0.153  nand4_1        C->Y         net8029
+      2.387  r  slew 0.242  nor3_4         A->Y         net3973
+      2.539  f  slew 0.115  a31oi_4        A3->Y        net482
+      2.776  r  slew 0.229  xnor2_1        B->Y         net2089
+      3.054  r  slew 0.079  maj3_2         C->X         net2090
+      3.142  f  slew 0.069  a211oi_2       A2->Y        net2093
+      3.284  r  slew 0.130  o21ai_2        A2->Y        net2095
+      3.372  f  slew 0.056  a21oi_2        A2->Y        net2098
+      3.502  r  slew 0.121  o21ai_2        A2->Y        net2101
+      3.588  f  slew 0.055  a21oi_2        A2->Y        net2104
+      3.724  r  slew 0.130  o21ai_2        A2->Y        net2106
+      3.803  f  slew 0.048  a21oi_2        A2->Y        net2109
+      3.995  f  slew 0.061  o21a_1         A2->X        net2112
+      4.214  f  slew 0.053  o21a_4         A2->X        net2114
+      4.440  r  slew 0.228  o311ai_4       A3->Y        net2118
+      4.562  f  slew 0.086  nand3_2        C->Y         net2119
+      4.863  r  slew 0.231  a311oi_2       A3->Y        net2126
+      4.996  f  slew 0.088  o311ai_2       A3->Y        net2130
+      5.338  r  slew 0.284  a311oi_2       A3->Y        net2135
+      5.479  f  slew 0.093  o311ai_2       A3->Y        net2138
+      5.824  r  slew 0.286  a311oi_2       A3->Y        net3042
+      5.952  f  slew 0.079  o311ai_2       A3->Y        net3047
+      6.345  f  slew 0.084  a311o_1        A3->X        net3051
+      6.642  r  slew 0.247  a311oi_1       A3->Y        net3054
+      6.760  f  slew 0.077  o21ai_1        A2->Y        net3143
+      7.035  r  slew 0.238  a211oi_1       A2->Y        net3313
+      7.307  r  slew 0.200  mux2i_1        S->Y         net3314
+      7.443  f  slew 0.095  a311oi_1       A3->Y        id_stage_i.branch_set_n
+      7.957  f  slew 0.112  or4_1          C->X         net3347
+      8.203  r  slew 0.198  a211oi_2       B1->Y        net3363
+      8.382  f  slew 0.151  nand4_1        C->Y         net6178
+      8.558  r  slew 0.196  nor4_2         D->Y         net6195
+      8.769  f  slew 0.188  nand4_1        D->Y         net6209
+      9.008  r  slew 0.264  nor4_4         D->Y         net6222
+      9.170  f  slew 0.123  nand4_4        D->Y         net6232
+      9.403  r  slew 0.290  nor4_4         D->Y         net6244
+      9.698  r  slew 0.083  and4_4         D->X         net6256
+      9.817  f  slew 0.092  nand4_4        D->Y         net6275
+     10.043  f  slew 0.127  nand4b_4       A_N->Y       net6288
+     10.196  r  slew 0.112  xnor2_1        B->Y         net6289
+     10.259  f  slew 0.033  o21ai_1        A2->Y        net6292
+
+worst primary-output arrivals (input delay 0, no output constraint):
+    7.441 ns  instr_addr_o[31]
+    7.231 ns  instr_addr_o[29]
+    7.176 ns  instr_addr_o[30]
+    6.997 ns  instr_addr_o[28]
+    6.958 ns  data_addr_o[31]
