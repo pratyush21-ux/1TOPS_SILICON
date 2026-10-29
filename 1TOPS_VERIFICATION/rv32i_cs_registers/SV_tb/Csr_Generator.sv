@@ -1,4 +1,6 @@
+`include "Csr_tb_cfg.svh"
 class Csr_Generator;
+    localparam NCNT = `CSR_N_PERF_CNT;
     mailbox #(Csr_Transaction) gen2drv;
     int num_tx    = 100;
     int gen_count = 0;
@@ -88,7 +90,7 @@ class Csr_Generator;
         named = '{12'h300, 12'h305, 12'h341, 12'h342, 12'hF14, 12'h7A0, 12'h7A1};
         idle(2);
         foreach (named[i]) csr(named[i], `CSR_OP_NONE, 32'h0);
-        for (int k = 0; k < 11; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
+        for (int k = 0; k < NCNT; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
         foreach (named[i]) begin
             csr(named[i], `CSR_OP_WRITE, 32'hFFFF_FFFF);
             csr(named[i], `CSR_OP_NONE,  32'h0);
@@ -116,7 +118,7 @@ class Csr_Generator;
         csr(12'h7A1, `CSR_OP_WRITE, 32'h0000_0001);
         csr(12'h79F, `CSR_OP_WRITE, 32'h0);
         events(200);
-        for (int k = 0; k < 11; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
+        for (int k = 0; k < NCNT; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
         csr(12'h780, `CSR_OP_WRITE, 32'hFFFF_FFFC);
         idle(8);
         csr(12'h780, `CSR_OP_NONE, 32'h0);
@@ -125,15 +127,15 @@ class Csr_Generator;
         idle(8);
         csr(12'h780, `CSR_OP_NONE, 32'h0);
         csr(12'h79F, `CSR_OP_WRITE, 32'h1234_5678);
-        for (int k = 0; k < 11; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
+        for (int k = 0; k < NCNT; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
         csr(12'h7A0, `CSR_OP_CLEAR, 32'h0000_0001);
         csr(12'h7A0, `CSR_OP_NONE, 32'h0);
         csr(12'h7A1, `CSR_OP_CLEAR, 32'h0000_0002);
         csr(12'h7A1, `CSR_OP_NONE, 32'h0);
         csr(12'h781, `CSR_OP_CLEAR, 32'h0000_00FF);
         csr(12'h781, `CSR_OP_NONE, 32'h0);
-        for (int k = 11; k < 32; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
-        for (int k = 0; k < 11; k++) begin
+        for (int k = NCNT; k < 32; k++) csr(12'h780 + k, `CSR_OP_NONE, 32'h0);
+        for (int k = 0; k < NCNT; k++) begin
             csr(12'h780 + k, `CSR_OP_SET,   32'h0000_0010);
             csr(12'h780 + k, `CSR_OP_CLEAR, 32'h0000_0010);
             csr(12'h780 + k, `CSR_OP_WRITE, 32'h0000_0100);

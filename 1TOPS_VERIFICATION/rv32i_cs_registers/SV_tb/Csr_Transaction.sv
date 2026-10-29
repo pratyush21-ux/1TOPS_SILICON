@@ -1,4 +1,5 @@
 `include "rv32i_defines.vh"
+`include "Csr_tb_cfg.svh"
 class Csr_Transaction;
     rand logic        csr_access_i;
     rand logic [11:0] csr_addr_i;
@@ -36,8 +37,8 @@ class Csr_Transaction;
         csr_access_i dist {1 := 70, 0 := 30};
         csr_addr_i dist {
             12'h300 := 15, 12'h305 := 5, 12'h341 := 10, 12'h342 := 10, 12'hF14 := 5,
-            12'h7A0 := 8, 12'h7A1 := 8, 12'h79F := 3, [12'h780:12'h78A] :/ 25,
-            [12'h78B:12'h79E] :/ 2, [12'h000:12'hFFF] :/ 9
+            12'h7A0 := 8, 12'h7A1 := 8, 12'h79F := 3, [`CSR_PCCR_FIRST:`CSR_PCCR_LAST] :/ 25,
+            [`CSR_PCCR_UNIMPL_FIRST:`CSR_PCCR_UNIMPL_LAST] :/ 2, [12'h000:12'hFFF] :/ 9
         };
         csr_op_i dist {`CSR_OP_NONE := 40, `CSR_OP_WRITE := 20, `CSR_OP_SET := 20, `CSR_OP_CLEAR := 20};
         !csr_access_i -> (csr_op_i == `CSR_OP_NONE);

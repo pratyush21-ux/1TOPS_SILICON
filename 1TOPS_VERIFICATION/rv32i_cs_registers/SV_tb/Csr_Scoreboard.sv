@@ -1,6 +1,7 @@
 `include "rv32i_defines.vh"
+`include "Csr_tb_cfg.svh"
 class Csr_Scoreboard;
-    localparam NCNT = 11;
+    localparam NCNT = `CSR_N_PERF_CNT;
 
     mailbox #(Csr_Transaction) mon2scb;
     int pass_count  = 0;
@@ -81,6 +82,7 @@ class Csr_Scoreboard;
     function void update(Csr_Transaction tx, logic [31:0] rdata);
         logic [31:0] w;
         logic        we;
+        logic [10:0] ev_all;
         logic [NCNT-1:0] ev;
         logic [11:0] a;
         logic        n_mie, n_mpie;
@@ -115,16 +117,18 @@ class Csr_Scoreboard;
             n_mpie = 1'b1;
         end
 
-        ev = '0;
-        ev[0]  = 1'b1;
-        ev[1]  = tx.if_valid_i;
-        ev[4]  = tx.imiss_i & ~tx.pc_set_i;
-        ev[5]  = tx.mem_load_i;
-        ev[6]  = tx.mem_store_i;
-        ev[7]  = tx.jump_i;
-        ev[8]  = tx.branch_i;
-        ev[9]  = tx.branch_taken_i;
-        ev[10] = tx.id_valid_i & tx.is_decoding_i & tx.is_compressed_i;
+        // full event list (same order as perf_events in the RTL), then keep the first NCNT
+        ev_all = '0;
+        ev_all[0]  = 1'b1;
+        ev_all[1]  = tx.id_valid_i & tx.is_decoding_i;
+        ev_all[4]  = tx.imiss_i & ~tx.pc_set_i;
+        ev_all[5]  = tx.mem_load_i;
+        ev_all[6]  = tx.mem_store_i;
+        ev_all[7]  = tx.jump_i;
+        ev_all[8]  = tx.branch_i;
+        ev_all[9]  = tx.branch_taken_i;
+        ev_all[10] = tx.id_valid_i & tx.is_decoding_i & tx.is_compressed_i;
+        ev = ev_all[NCNT-1:0];
 
         for (int i = 0; i < NCNT; i++) begin
             n_pccr[i] = pccr[i];

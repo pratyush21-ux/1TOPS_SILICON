@@ -25,3 +25,7 @@ a.out
 # OS
 Thumbs.db
 .DS_Store
+
+# Synthesis outputs (regenerate with synth/run_synth.sh)
+synth/netlist/
+synth/*.lib

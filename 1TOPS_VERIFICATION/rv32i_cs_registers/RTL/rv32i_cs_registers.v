@@ -1,7 +1,11 @@
 `include "rv32i_defines.vh"
 module rv32i_cs_registers
 #(
-    parameter N_EXT_CNT = 0
+    // Number of built-in performance counters (1..11).
+    //   2  : cycles + instructions (default, tapeout configuration)
+    //   11 : full PULP-style event set (profiling configuration)
+    parameter N_PERF_CNT = 2,
+    parameter N_EXT_CNT  = 0
 )
 (
     input clk,
@@ -39,7 +43,7 @@ module rv32i_cs_registers
     input mem_store_i,
     input  [N_EXT_CNT-1:0] ext_counters_i
 );
-    localparam N_PERF_COUNTERS = 11 + N_EXT_CNT;
+    localparam N_PERF_COUNTERS = N_PERF_CNT + N_EXT_CNT;
     localparam N_PERF_REGS     = N_PERF_COUNTERS;
     // mstatus fields (replaces SV struct)
     reg mstatus_mie_q,  mstatus_mie_n;
@@ -159,17 +163,22 @@ module rv32i_cs_registers
     // =========================================================
     // Performance Counters
     // =========================================================
-    assign PCCR_in[0]  = 1'b1;
-    assign PCCR_in[1]  = if_valid_i;
-    assign PCCR_in[2]  = 1'b0;
-    assign PCCR_in[3]  = 1'b0;
-    assign PCCR_in[4]  = imiss_i & (~pc_set_i);
-    assign PCCR_in[5]  = mem_load_i;
-    assign PCCR_in[6]  = mem_store_i;
-    assign PCCR_in[7]  = jump_i;
-    assign PCCR_in[8]  = branch_i;
-    assign PCCR_in[9]  = branch_taken_i;
-    assign PCCR_in[10] = id_valid_i & is_decoding_i & is_compressed_i;
+    // Full event list. Only the first N_PERF_CNT entries get a counter;
+    // the rest are left unconnected and removed by synthesis.
+    wire [10:0] perf_events;
+    assign perf_events[0]  = 1'b1;                                      // cycles
+    assign perf_events[1]  = id_valid_i & is_decoding_i;                // instructions issued
+    assign perf_events[2]  = 1'b0;                                      // reserved
+    assign perf_events[3]  = 1'b0;                                      // reserved
+    assign perf_events[4]  = imiss_i & (~pc_set_i);                     // instruction fetch wait cycles
+    assign perf_events[5]  = mem_load_i;                                // loads
+    assign perf_events[6]  = mem_store_i;                               // stores
+    assign perf_events[7]  = jump_i;                                    // jumps
+    assign perf_events[8]  = branch_i;                                  // branches
+    assign perf_events[9]  = branch_taken_i;                            // taken branches
+    assign perf_events[10] = id_valid_i & is_decoding_i & is_compressed_i; // compressed instructions
+
+    assign PCCR_in[N_PERF_CNT-1:0] = perf_events[N_PERF_CNT-1:0];
 
     genvar gi;
     generate

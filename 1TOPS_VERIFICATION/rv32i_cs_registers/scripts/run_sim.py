@@ -7,6 +7,7 @@ Usage:
     python scripts/run_sim.py --cov           # code + functional coverage, HTML report
     python scripts/run_sim.py --gui           # open in the Questa GUI
     python scripts/run_sim.py --clean         # delete the sim folder first
+    python scripts/run_sim.py --ncnt 11       # perf counters in the DUT (default 2, full set 11)
     python scripts/run_sim.py -v              # print the full simulation log
 """
 import argparse
@@ -46,6 +47,8 @@ def main():
     ap.add_argument("--cov", action="store_true", help="collect coverage and write an HTML report")
     ap.add_argument("--gui", action="store_true", help="open the Questa GUI")
     ap.add_argument("--clean", action="store_true", help="delete the sim folder first")
+    ap.add_argument("--ncnt", type=int, default=2, choices=range(1, 12), metavar="{1..11}",
+                    help="number of built-in perf counters (DUT N_PERF_CNT), default 2")
     ap.add_argument("-v", "--verbose", action="store_true", help="print the full log")
     args = ap.parse_args()
 
@@ -57,14 +60,15 @@ def main():
         run(["vlib", "work"], "vlib.log")
 
     # -mfcu is required, otherwise the bind in Csr_Assertions.sv is dropped
-    vlog = ["vlog", "-sv", "-mfcu", "-timescale", "1ns/1ps", f"+incdir+{TB}", f"+incdir+{RTL}"]
+    vlog = ["vlog", "-sv", "-mfcu", "-timescale", "1ns/1ps", f"+incdir+{TB}", f"+incdir+{RTL}",
+            f"+define+CSR_N_PERF_CNT={args.ncnt}"]
     if args.cov:
         vlog += ["-cover", "bcesft"]
     rc, out = run(vlog + SOURCES, "compile.log")
     if rc != 0 or "** Error" in out:
         print(out)
         sys.exit(f"Compile failed, see {WORK / 'compile.log'}")
-    print("Compile OK")
+    print(f"Compile OK (N_PERF_CNT={args.ncnt})")
 
     vsim = ["vsim", "-sv_seed", args.seed, f"+NUMTXN={args.trans}"]
     if args.cov:

@@ -1,4 +1,5 @@
 `include "rv32i_defines.vh"
+`include "Csr_tb_cfg.svh"
 class Csr_Coverage;
     mailbox #(Csr_Transaction) mon2cov;
     Csr_Transaction tx;
@@ -24,8 +25,8 @@ class Csr_Coverage;
             bins pcer     = {12'h7A0};
             bins pcmr     = {12'h7A1};
             bins pccr_all = {12'h79F};
-            bins pccr[]   = {[12'h780:12'h78A]};
-            bins pccr_unimpl = {[12'h78B:12'h79E]};
+            bins pccr[]   = {[`CSR_PCCR_FIRST:`CSR_PCCR_LAST]};
+            bins pccr_unimpl = {[`CSR_PCCR_UNIMPL_FIRST:`CSR_PCCR_UNIMPL_LAST]};
         }
 
         cp_op : coverpoint op iff (access) {
@@ -47,7 +48,7 @@ class Csr_Coverage;
             bins on  = {1'b1};
         }
 
-        cp_sat : coverpoint rdata iff (access && addr inside {[12'h780:12'h78A]}) {
+        cp_sat : coverpoint rdata iff (access && addr inside {[`CSR_PCCR_FIRST:`CSR_PCCR_LAST]}) {
             bins saturated = {32'hFFFF_FFFF};
             bins wrapped   = {[32'h0:32'h10]};
             bins counting  = {[32'h11:32'hFFFF_FFFE]};

@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
 `include "rv32i_defines.vh"
+`include "Csr_tb_cfg.svh"
 `include "Csr_Transaction.sv"
 `include "Csr_Generator.sv"
 `include "Csr_Driver.sv"
@@ -14,7 +15,7 @@ module Csr_tb_top;
 
     Csr_interface intf (.clk(clk));
 
-    rv32i_cs_registers #(.N_EXT_CNT(0)) dut (
+    rv32i_cs_registers #(.N_PERF_CNT(`CSR_N_PERF_CNT), .N_EXT_CNT(0)) dut (
         .clk                (clk),
         .rst_n              (intf.rst_n),
         .core_id_i          (intf.core_id_i),
@@ -54,6 +55,7 @@ module Csr_tb_top;
     initial begin
         if ($value$plusargs("NUMTXN=%d", num_txn))
             $display("[TOP] Number of transactions from command line: %0d", num_txn);
+        $display("[TOP] DUT N_PERF_CNT = %0d", `CSR_N_PERF_CNT);
         env = new(intf, num_txn);
         env.run();
     end

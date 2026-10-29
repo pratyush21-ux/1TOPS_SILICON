@@ -1,6 +1,7 @@
 `include "rv32i_defines.vh"
 module rv32i_core
 #(
+    parameter N_PERF_CNT=2,          // built-in perf counters: 2 = cycles+instructions, 11 = full set
     parameter N_EXT_PERF_COUNTER=0,
     parameter RV32E=0
 )
@@ -274,6 +275,7 @@ rv32i_load_store_unit load_store
 
 rv32i_cs_registers
 #(
+    .N_PERF_CNT(N_PERF_CNT),
     .N_EXT_CNT(N_EXT_PERF_COUNTER)
 )
 cs_registers_i
